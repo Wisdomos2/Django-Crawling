@@ -1,0 +1,3 @@
+Django
+DjangoRestframework
+psycopg2-binary
