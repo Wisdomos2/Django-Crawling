@@ -11,8 +11,6 @@ from .models import loaCrawling
 class loaCrawlingView(APIView):
 
     def post(self, request):
-        data = json.loads(request.body)
-
         # HTTP GET Request
         req = requests.get('https://lostark.game.onstove.com/Shop/Mari')
 
@@ -27,7 +25,6 @@ class loaCrawlingView(APIView):
         # listItems > li:nth-child(1) > div > div.area-amount > span
         mari1_item = soup.select('listItems > li:nth-child(1) > div > div.item-desc > span.item-name')
         mari1_cristal = soup.select('listItems > li:nth-child(1) > div > div.area-amount > span')
-
         mari2_item = soup.select('listItems > li:nth-child(2) > div > div.item-desc > span.item-name')
         mari2_cristal = soup.select('listItems > li:nth-child(2) > div > div.area-amount > span')
 
@@ -46,7 +43,9 @@ class loaCrawlingView(APIView):
         mariList = ((mari1_item, mari1_cristal), (mari2_item, mari2_cristal), (mari3_item, mari3_cristal),
                     (mari4_item, mari4_cristal), (mari5_item, mari5_cristal), (mari6_item, mari6_cristal))
 
-        for item in mariList:
-            loaCrawling(item[0].text, item[1].integer).save()
+        print(mariList)
 
-        return Response(status=status.HTTP_201_CREATED)
+        # for item in mariList:
+        #     loaCrawling(item[0].text, item[1].integer).save()
+
+        return Response(data=mariList, status=status.HTTP_201_CREATED)
