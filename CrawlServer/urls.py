@@ -22,4 +22,7 @@ urlpatterns = [
     # Account
     path('account/', include('Account.urls'), name='account'),
 
+    # loa
+    path('loa/', include('lostarkCrawling.urls'), name='loa'),
+
 ]

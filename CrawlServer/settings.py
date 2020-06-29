@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # LostarkCrawling
     'lostarkCrawling',
+
 ]
 
 MIDDLEWARE = [
